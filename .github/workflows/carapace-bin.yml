@@ -23,6 +23,6 @@ jobs:
         with:
           version: '~> v2'
           # args: build --clean --snapshot --skip validate
-          args: release --clean --skip announce,aur,before,chocolatey,docker,homebrew,ko,nfpm,nix,notarize,publish,sbom,scoop,sign,snapcraft,validate,winget
+          args: release --clean --skip announce,aur,chocolatey,docker,homebrew,ko,nfpm,nix,notarize,publish,sbom,scoop,sign,snapcraft,validate,winget
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
