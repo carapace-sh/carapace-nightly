@@ -1,0 +1,23 @@
+name: Go
+
+on:
+  push:
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    container: ghcr.io/carapace-sh/go:1.23.0
+    steps:
+      - name: shallow clone
+        uses: actions/checkout@v4
+        with:
+          repository: carapace-sh/carapace-bin
+
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v5
+        with:
+          version: latest
+          args: build --clean --skip validate
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
