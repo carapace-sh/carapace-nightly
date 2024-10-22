@@ -4,7 +4,6 @@ on:
   push:
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
     container: ghcr.io/carapace-sh/go:1.23.0
@@ -22,10 +21,14 @@ jobs:
         uses: goreleaser/goreleaser-action@v5
         with:
           version: '~> v2'
-          # args: build --clean --snapshot --skip validate
           args: release --clean --skip announce,aur,chocolatey,docker,homebrew,ko,nfpm,nix,notarize,publish,sbom,scoop,sign,snapcraft,validate,winget
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: moep
-        run:  find dist
+      - name: install gh
+        run: apt-get update && apt-get install -y gh
+
+      - name: upload archives
+        run: gh repo view
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
