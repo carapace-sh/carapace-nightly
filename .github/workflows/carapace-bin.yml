@@ -29,6 +29,6 @@ jobs:
         run: apt-get update && apt-get install -y gh
 
       - name: upload archives
-        run: gh release --repo carapace-sh/carapace-nightly --title "carapace-bin $(date +%Y-%m-%d)" ./dist/*.zip ./dist/*.tar.gz ./dist/checksums.txt
+        run: gh release create --repo carapace-sh/carapace-nightly --title "carapace-bin $(date +%Y-%m-%d)" ./dist/*.zip ./dist/*.tar.gz ./dist/checksums.txt
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
