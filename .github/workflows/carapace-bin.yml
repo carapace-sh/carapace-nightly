@@ -21,6 +21,6 @@ jobs:
         uses: goreleaser/goreleaser-action@v5
         with:
           version: '~> v2'
-          args: build --clean --skip validate
+          args: build --clean --snapshot --skip validate
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
