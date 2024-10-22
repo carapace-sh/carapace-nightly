@@ -9,10 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     container: ghcr.io/carapace-sh/go:1.23.0
     steps:
-      - name: shallow clone
+      - name: deep clone
         uses: actions/checkout@v4
         with:
           repository: carapace-sh/carapace-bin
+          fetch-depth: 0
 
       - name: fix git safe.directory
         run:  git config --global --add safe.directory '*'
@@ -21,6 +22,7 @@ jobs:
         uses: goreleaser/goreleaser-action@v5
         with:
           version: '~> v2'
-          args: build --clean --snapshot --skip validate
+          # args: build --clean --snapshot --skip validate
+          args: release --clean --skip announce,aur,before,chocolatey,docker,homebrew,ko,nfpm,nix,notarize,publish,sbom,scoop,sign,snapcraft,validate,winget
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
