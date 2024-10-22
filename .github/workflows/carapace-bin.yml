@@ -26,3 +26,6 @@ jobs:
           args: release --clean --skip announce,aur,chocolatey,docker,homebrew,ko,nfpm,nix,notarize,publish,sbom,scoop,sign,snapcraft,validate,winget
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: moep
+        run:  find dist
